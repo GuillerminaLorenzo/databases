@@ -49,11 +49,14 @@ INSERT INTO "public"."albums" ("title", "release_year", "artist_id") VALUES
 ('Baltimore', 1978, 4),
 ( 'Here Comes the Sun', 1971, 4),
 ( 'Fodder on My Wings', 1982, 4),
-( 'Ring Ring', 1973, 2);
+( 'Mezzanine', 1998, 5),
+( 'OK Computer', 1997, 6);
 
 INSERT INTO "public"."artists" ("name", "genre") VALUES
 ('Pixies', 'Rock'),
 ('ABBA', 'Pop'),
 ('Taylor Swift', 'Pop'),
-('Nina Simone', 'Pop');
+('Nina Simone', 'Pop'),
+('Massive Attack', 'Alternative'),
+('Radiohead', 'Alternative rock');
 
