@@ -12,16 +12,34 @@ describe AlbumRepository do
         reset_albums_table
     end
 
-    it '' do 
+    it 'return two albums' do 
         repo = AlbumRepository.new
 
         albums = repo.all
 
         expect(albums.length).to eq 2
 
-        expect(albums[0].id).to eq '1'
         expect(albums[0].title).to eq 'Bossanova'
         expect(albums[0].release_year).to eq '1999'
         expect(albums[0].artist_id).to eq '1'
     end
+
+    it 'returns the single album Bossanova' do
+        repo = AlbumRepository.new
+        albums = repo.find(1)
+
+        expect(albums.title).to eq 'Bossanova'
+        expect(albums.release_year).to eq '1999'
+        expect(albums.artist_id).to eq '1'
+    end
+
+    it 'returns the single album Surfer Rosa' do
+        repo = AlbumRepository.new
+        albums = repo.find(2)
+
+        expect(albums.title).to eq 'Surfer Rosa'
+        expect(albums.release_year).to eq '2001'
+        expect(albums.artist_id).to eq '1'
+    end
+
 end

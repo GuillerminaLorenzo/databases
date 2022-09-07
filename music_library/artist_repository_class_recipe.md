@@ -8,12 +8,6 @@ Otherwise, follow this recipe to design and create the SQL schema for your table
 
 In this template, we'll use an example table students
 
-# EXAMPLE
-
-Table: students
-
-Columns:
-id | name | cohort_name
 2. Create Test SQL seeds
 Your tests will depend on data stored in PostgreSQL to run.
 
@@ -95,6 +89,12 @@ class ArtistRepository
 
     # Returns an array of Artists objects.
   end
+  def find(id)
+    # Executes the SQL
+    # SELECT id, name, genre FROM artists WHERE id = $1;
+
+    # Retuens a sinlge Artists object
+  end
 end
 ```
 
@@ -107,7 +107,7 @@ These examples will later be encoded as RSpec tests.
 # EXAMPLES
 
 # 1
-# Get all students
+# Get all artists
 
 repo = ArtistRepository.new
 
@@ -119,9 +119,24 @@ artists[0].id # =>  1
 artists[0].name # =>  'Pixies'
 artists[0].genre # =>  'Rock'
 
-artists[1].id # =>  2
-artists[1].name # =>  'ABBA'
-artists[1].genre # =>  'Pop'
+# 2
+# Get a single artist ('Pixies')
+
+repo = ArtistRepository.new
+artist = repo.find(1)
+
+artist.name # => 'Pixies'
+artist.genre # => 'Rock'
+
+# 3
+# Get a single artist ('ABBA')
+
+repo = ArtistRepository.new
+artist = repo.find(2)
+
+artist.name # => 'ABBA'
+artist.genre # => 'Pop'
+
 
 # Add more examples for each method
 ```

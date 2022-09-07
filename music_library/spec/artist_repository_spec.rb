@@ -11,7 +11,7 @@ describe ArtistRepository do
         reset_artists_table
     end
     
-    it '' do
+    it 'returns the list of artists' do
         repo = ArtistRepository.new
 
         artists = repo.all
@@ -21,13 +21,20 @@ describe ArtistRepository do
         expect(artists[0].name).to eq 'Pixies'
         expect(artists[0].genre).to eq 'Rock'
     end
-    it '' do
+    
+    it 'returns the Pixies as single artist' do
         repo = ArtistRepository.new
+        artist = repo.find(1)
 
-        artists = repo.all
+        expect(artist.name).to eq 'Pixies'
+        expect(artist.genre).to eq 'Rock'
+    end
 
-        expect(artists[1].id).to eq '2' 
-        expect(artists[1].name).to eq 'ABBA'
-        expect(artists[1].genre).to eq 'Pop'
+    it 'returns the ABBA as single artist' do
+        repo = ArtistRepository.new
+        artist = repo.find(2)
+
+        expect(artist.name).to eq 'ABBA'
+        expect(artist.genre).to eq 'Pop'
     end
 end

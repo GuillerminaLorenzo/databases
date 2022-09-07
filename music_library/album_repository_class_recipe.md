@@ -8,12 +8,6 @@ Otherwise, follow this recipe to design and create the SQL schema for your table
 
 In this template, we'll use an example table students
 
-# EXAMPLE
-
-Table: students
-
-Columns:
-id | name | cohort_name
 2. Create Test SQL seeds
 Your tests will depend on data stored in PostgreSQL to run.
 
@@ -84,10 +78,10 @@ Using comments, define the method signatures (arguments and return value) and wh
 
 ```ruby
 # EXAMPLE
-# Table name: artists
+# Table name: albums
 
 # Repository class
-# (in lib/artists_repository.rb)
+# (in lib/albums_repository.rb)
 
 class AlbumRepository
 
@@ -99,6 +93,16 @@ class AlbumRepository
 
     # Returns an array of Artists objects.
   end
+
+  # Select a single album record
+  # Given its id in argument (a number)
+  def find(id)
+    # Executes the SQL
+    # SELECT id, title, release_year, artist_id FROM albums WHERE id = $1;
+
+    # Retuens a sinlge Album object
+  end
+
 end
 ```
 
@@ -111,25 +115,43 @@ These examples will later be encoded as RSpec tests.
 # EXAMPLES
 
 # 1
-# Get all students
+# Get all albums
 
 repo = AlbumRepository.new
-
 albums = repo.all
 
 albums.length # =>  2
 
-albums[0].id # =>  1
 albums[0].title # =>  'Bossanova'
 albums[0].release_year # =>  '1999'
 albums[0].artist_id # => '1'
 
-albums[1].id # =>  2
-albums[1].title # =>  'Surfer Rosa'
-albums[1].release_year # =>  '2001'
-albums[1].artist_id # => '1'
+# 2
+# Get all albums when there are no albums in the DB
 
-# Add more examples for each method
+repo = AlbumRepository.new
+albums = repo.all # => []
+
+# 3 
+# Get a single album ('Bossanova')
+
+repo = AlbumRepository.new
+albums = repo.find(1)
+
+album.title # => 'Bossanova'
+album.release_year # => '1999'
+album.artist_id # => '1'
+
+# 4 
+# Get a single album ('Surfer Rosa')
+
+repo = AlbumRepository.new
+albums = repo.find(2)
+
+album.title # => 'Surfer Rosa'
+album.release_year # => '2001'
+album.artist_id # => '1'
+
 ```
 
 Encode this example as a test.

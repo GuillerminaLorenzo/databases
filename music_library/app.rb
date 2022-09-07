@@ -17,8 +17,29 @@ artist_repository.all.each do |record|
   puts "#{record.id} - #{record.name} - #{record.genre}"
 end
 
+# artist_repository.all.each do |record|
+#   p record
+# end
+
 album_repository = AlbumRepository.new
 
 album_repository.all.each do |record|
   puts "#{record.id} - #{record.title} - #{record.release_year} - #{record.artist_id}"
 end
+
+# album_repository.all.each do |record|
+#   p record
+# end
+
+# Get the album with id 3
+album = album_repository.find(3)
+
+puts album.id
+puts album.title
+puts album.release_year
+
+artist = artist_repository.find(2)
+
+puts artist.id
+puts artist.name
+puts artist.genre
