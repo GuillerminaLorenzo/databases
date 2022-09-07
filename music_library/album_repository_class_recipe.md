@@ -103,6 +103,23 @@ class AlbumRepository
     # Retuens a sinlge Album object
   end
 
+  def create(album)
+    # sql = 'INSERT INTO albums (title, release_year, artist_id) VALUES ($1, $2);'
+
+    # doesn't need to return anything(only creates the record)
+  end
+
+  def delete(id)
+    # sql = 'DELETE FROM album WHERE id = $1;'
+
+    # doesn't need to return anything(only deletes the record)
+  end
+
+  def update(album)
+    # sql = 'UPDATE artists SET name = $1, genre = $2 WHERE id = $3;'
+
+    # doesn't need to return anything(only updates the record)
+  end
 end
 ```
 
@@ -151,6 +168,54 @@ albums = repo.find(2)
 album.title # => 'Surfer Rosa'
 album.release_year # => '2001'
 album.artist_id # => '1'
+
+# 5
+# Create a new album
+repo = AlbumRepository.new
+
+album = Album.new
+album.title = 'Trompe le Monde'
+album.release_year = '1991'
+album.artist_id = '1'
+
+repo.create(album)
+
+all_albums = repo.all
+
+last_album = all_albums.last
+last_album.title # => 'Trompe le Monde'
+last_album.release_year # => '1991'
+last_album.artist_id # => '1'
+
+# 6
+# Deletes an album
+repo = AlbumRepository.new
+
+album = repo.find(1)
+
+repo.delete(album.id)
+
+albums = repo.all
+albums.length # => 1
+albums[0].id # => '2'
+
+# 7
+# Update an album
+repo = AlbumRepository.new
+
+album = repo.find(1)
+
+album.title = 'cccc'
+album.release_year = '1990'
+album.artist_id = '2'
+
+repo.update(album)
+
+albums = repo.find(1)
+
+album.title # => 'cccc'
+album.release_year # => '1990'
+album.artist_id # => '2'
 
 ```
 

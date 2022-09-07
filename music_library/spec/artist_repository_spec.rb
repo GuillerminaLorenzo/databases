@@ -37,4 +37,46 @@ describe ArtistRepository do
         expect(artist.name).to eq 'ABBA'
         expect(artist.genre).to eq 'Pop'
     end
+
+    it 'creates a new artist' do
+        repo = ArtistRepository.new
+
+        artist = Artist.new
+        artist.name = 'Bad Bunny'
+        artist.genre = 'Reggeaton'
+
+        repo.create(artist) 
+
+        artists = repo.all
+
+        last_artist = artists.last
+        expect(last_artist.name).to eq 'Bad Bunny'
+        expect(last_artist.genre).to eq 'Reggeaton'
+    end
+
+    it 'deletes one artist' do
+        repo = ArtistRepository.new
+
+        repo.delete(1)
+
+        artists = repo.all
+        expect(artists.length).to eq 1
+        expect(artists[0].id).to eq '2'
+    end
+
+    it 'updates one artist' do
+        repo = ArtistRepository.new
+
+        artist = repo.find(1)
+
+        artist.name = 'aaaa'
+        artist.genre = 'bbbb'
+
+        repo.update(artist)
+
+        artists = repo.find(1)
+
+        expect(artists.name).to eq 'aaaa'
+        expect(artists.genre).to eq 'bbbb'
+    end
 end

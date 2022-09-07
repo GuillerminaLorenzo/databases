@@ -29,5 +29,26 @@ class ArtistRepository
         artist.genre = record['genre']
 
       return artist
-  end
+    end
+
+    def create(artist)
+        sql = 'INSERT INTO artists (name, genre) VALUES ($1, $2);'
+        params = [artist.name, artist.genre]
+
+        DatabaseConnection.exec_params(sql, params)
+    end
+
+    def delete(id)
+        sql = 'DELETE FROM artists WHERE id = $1;'
+        params = [id]
+        
+        DatabaseConnection.exec_params(sql, params)
+    end
+
+    def update(artist)
+        sql = 'UPDATE artists SET name = $1, genre = $2 WHERE id = $3;'
+        params = [artist.name, artist.genre, artist.id]
+
+        DatabaseConnection.exec_params(sql, params)
+    end
 end

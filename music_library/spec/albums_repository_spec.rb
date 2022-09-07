@@ -42,4 +42,49 @@ describe AlbumRepository do
         expect(albums.artist_id).to eq '1'
     end
 
+    it 'creates a new album' do
+        repo = AlbumRepository.new
+
+        album = Album.new
+        album.title = 'Trompe le Monde'
+        album.release_year = '1991'
+        album.artist_id = '1'
+
+        repo.create(album)
+
+        all_albums = repo.all
+
+        last_album = all_albums.last
+        expect(last_album.title).to eq 'Trompe le Monde'
+        expect(last_album.release_year).to eq '1991'
+        expect(last_album.artist_id).to eq '1'
+    end
+
+    it 'deletes one artist' do
+        repo = AlbumRepository.new
+
+        repo.delete(1)
+
+        albums = repo.all
+        expect(albums.length).to eq 1
+        expect(albums[0].id).to eq '2'
+    end
+
+    it 'updates one artist' do
+        repo = AlbumRepository.new
+
+        album = repo.find(1)
+
+        album.title = 'cccc'
+        album.release_year = '1990'
+        album.artist_id = '2'
+
+        repo.update(album)
+
+        albums = repo.find(1)
+
+        expect(album.title).to eq 'cccc'
+        expect(album.release_year).to eq '1990'
+        expect(album.artist_id).to eq '2'
+    end
 end
