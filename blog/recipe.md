@@ -43,7 +43,7 @@ Put the different nouns in this table. Replace the example with your own nouns.
 | Record                | Properties          |
 | --------------------- | ------------------  |
 | post                  | title, content
-| comment               | author, content
+| comment               | author, comment_content
 
 
 ## 3. Decide the column types.
@@ -55,15 +55,16 @@ Remember to **always** have the primary key `id` as a first column. Its type wil
 ```
 # EXAMPLE:
 
-Table: post
+Table: posts
 id: SERIAL
 title: text
 content: text
 
-Table: comment
+Table: comments
 id: SERIAL
 author: text
-content: text
+comment_content: text
+id_post: int
 
 ```
 
@@ -103,8 +104,8 @@ CREATE TABLE posts (
 -- Then the table with the foreign key first.
 CREATE TABLE comments (
   id SERIAL PRIMARY KEY,
-  title text,
-  content text,
+  author text,
+  comment_content text,
 -- The foreign key name is always {other_table_singular}_id
   post_id int,
   constraint fk_post foreign key(post_id)
