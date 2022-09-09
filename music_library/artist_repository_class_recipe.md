@@ -110,6 +110,21 @@ class ArtistRepository
 
     # doesn't need to return anything(only updates the record)
   end
+  def find_with_albums(id)
+  # 'SELECT artists.id AS "id",
+  #    artists.name AS "name,
+  #    artists.genre AS "genre,
+  #    albums.id AS "album_id",
+  #    albums.title AS "title",
+  #    albums.release_year AS "release_year"
+  #  FROM artists
+  #  JOIN albums 
+  #  ON albums.artist_id = artists.id
+  #  WHERE artists.id = $1;'
+
+  # Returns an Artists object
+  # with the array of Album objects
+  end
 end
 ```
 
@@ -192,6 +207,17 @@ artists = repo.find(1)
 
 artists.name # => 'aaaa'
 artists.genre # => 'bbbb'
+
+# 
+repo = ArtistRepository.new
+
+artist = repo.find_with_albums(1)
+
+artist.name # => 'Pixies'
+artist.genre # => 'Rock'
+artist.albums.length # => 2
+artist.albums.first.title # => 'Bossanova'
+
 
 # Add more examples for each method
 ```
