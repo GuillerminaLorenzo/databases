@@ -1,5 +1,5 @@
-require_relative './database_connection'
-require_relative './book'
+require_relative 'database_connection'
+require_relative 'book'
 
 class BookRepository
   def all
