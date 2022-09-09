@@ -98,7 +98,7 @@ Replace the relevant bits in this example with your own:
 
 ```sql
 -- EXAMPLE
--- file: albums_table.sql
+-- file: students_table.sql
 
 -- Replace the table name, columm names and types.
 
